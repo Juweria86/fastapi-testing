@@ -4,6 +4,7 @@ from . import models, schemas
 
 # CREATE
 def create_user(db: Session, user: schemas.UserCreate):
+    """"Create a new user in the database."""
     existing = db.query(models.User).filter(models.User.email == user.email).first()
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
